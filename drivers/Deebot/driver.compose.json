@@ -1,0 +1,47 @@
+{
+  "name": {
+    "en": "Deebot",
+    "fr": "Deebot"
+  },
+  "class": "vacuumcleaner",
+  "capabilities": [
+    "onoff",
+    "measure_battery"
+  ],
+  "platforms": [ "local" ],
+  "connectivity": [ "lan" ],
+  "pair": [
+    {
+      "id": "login_credentials",
+      "template": "login_credentials",
+      "options": {
+        
+        "usernameLabel": { "en": "Ecovacs account", "fr": "Compte Ecovacs" },
+        "usernamePlaceholder": { "en": "john@doe.com", "fr": "ciel@monmari.com" },
+        "passwordLabel": { "en": "Password", "fr": "Mot de passe" },
+        "passwordPlaceholder": { "en": "Password", "fr": "secret" }
+      }
+    },
+    {
+      "id": "list_devices",
+      "template": "list_devices",
+      "navigation": { "next": "add_devices" }
+    },
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
+
+  "energy": {
+      "approximation": {
+        "usageOn": 10,
+        "usageOff": 0
+        }
+      },
+  "images": {
+    "small": "/drivers/settopbox/assets/images/Deebot-large.png",
+    "large": "/drivers/settopbox/assets/images/Deebot-small.png"
+
+  }
+}

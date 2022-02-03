@@ -1,0 +1,38 @@
+{
+  "1.0.0": {
+    "en": "First minimum viable product "
+  },
+  "1.0.1": {
+    "en": "manifest update"
+  },
+  "1.0.2": {
+    "en": "complianc eto Homey guidelines"
+  },
+  "1.0.3": {
+    "en": "localized documentation"
+  },
+  "1.1.0": {
+    "en": "Added chennel selection support"
+  },
+  "1.1.1": {
+    "en": "enhanced channels management"
+  },
+  "1.2.0": {
+    "en": "added Pause and OK"
+  },
+  "1.2.1": {
+    "en": "minor bug correction"
+  },
+  "1.2.2": {
+    "en": "Device status synchronization enhancement"
+  },
+  "1.2.3": {
+    "en": "Corrected application crash when settopbox is unreachable"
+  },
+  "1.2.4": {
+    "en": "bug correction"
+  },
+  "1.2.5": {
+    "en": "minor bug correction"
+  }
+}

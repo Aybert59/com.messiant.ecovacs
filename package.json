@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "ecovacs-deebot": "^0.7.1",
+    "node-machine-id": "^1.1.12",
+    "sucks": "^0.0.6"
+  }
+}

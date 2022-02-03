@@ -1,0 +1,57 @@
+{
+  "id": "com.messiant.ecovacs",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "name": {
+    "en": "Ecovacs Vacuum Cleaners",
+    "fr": "Aspirateurs Ecovacs"
+  },
+  "brandColor": "#391e75",
+  "description": {
+    "en": "Clean it !",
+    "fr": "Aspirez !"
+  },
+  "category": [
+    "appliances"
+  ],
+  "homeyCommunityTopicId": 11498,
+  "permissions": [],
+  "platforms": [
+    "local"
+  ],
+ 
+  "images": {
+    "small": "/assets/images/Ecovacs-small.png",
+    "large": "/assets/images/Ecovacs-large.png"
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "paypal.me/Aybert59"
+      }
+    }
+  },
+
+  "author": {
+    "name": "Olivier Messiant",
+    "email": "o.messiant@orange.fr"
+  },
+  "support": "mailto:o.messiant@orange.fr",
+  "drivers": [
+    {
+      "id": "deebot",
+      "name": {
+        "en": "deebot"
+      },
+      "class": "tv",
+      "capabilities": [
+        "onoff"
+      ],
+      "images": {
+        "small": "/drivers/settopbox/assets/images/Deebot-small.png",
+        "large": "/drivers/settopbox/assets/images/Deebot-large.png"
+      }
+    }
+  ]
+}
