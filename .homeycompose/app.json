@@ -1,11 +1,11 @@
 {
   "id": "com.messiant.ecovacs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
-    "en": "Ecovacs Vacuum Cleaners",
-    "fr": "Aspirateurs Ecovacs"
+    "en": "Ecovacs",
+    "fr": "Ecovacs"
   },
   "brandColor": "#391e75",
   "description": {
@@ -20,7 +20,6 @@
   "platforms": [
     "local"
   ],
- 
   "images": {
     "small": "/assets/images/Ecovacs-small.png",
     "large": "/assets/images/Ecovacs-large.png"
@@ -32,7 +31,6 @@
       }
     }
   },
-
   "author": {
     "name": "Olivier Messiant",
     "email": "o.messiant@orange.fr"

@@ -26,13 +26,6 @@ class VacuumDevice extends Device {
     
     
       
-    //const changeChannelAction = this.homey.flow.getActionCard('change_channel');
-    //  changeChannelAction.registerRunListener(this.flowChangeChannelAction.bind(this));
-    
-        
-    //const changeChannelCondition = this.homey.flow.getConditionCard('current_channel');
-    //  changeChannelCondition.registerRunListener(this.flowCurrentChannel.bind(this));
-    
   }
 
   /**
@@ -158,29 +151,7 @@ class VacuumDevice extends Device {
     
     //////////////////////////////////////////// Flows ///////////////////////////////////////
     
-    async flowChangeChannelAction (args, state) {
-         
-        if (this.getCapabilityValue ('onoff') == true) {
-            const canalID = this.getChannelIDByNum (args.canal);
-            this.triggerCapabilityListener('station_capability_static', canalID, null);
-        }
-    }
-    
-    
-    
-    async flowCurrentChannel (args, state) {
-         
-        if (this.getCapabilityValue ('onoff') == true) {
-            const channelNum = this.getCapabilityValue ('measure_channel_capability');
-
-            if (args.canal == channelNum)
-                return true;
-            else
-                return false;
-        } else {
-            return false;
-        }
-    }
+  
     
     
     

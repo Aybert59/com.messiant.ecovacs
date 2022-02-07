@@ -34,14 +34,11 @@
   ],
 
   "energy": {
-      "approximation": {
-        "usageOn": 10,
-        "usageOff": 0
-        }
+    "batteries": ["INTERNAL"]
       },
   "images": {
-    "small": "/drivers/settopbox/assets/images/Deebot-large.png",
-    "large": "/drivers/settopbox/assets/images/Deebot-small.png"
+    "large": "/drivers/Deebot/assets/images/Deebot-large.png",
+    "small": "/drivers/Deebot/assets/images/Deebot-small.png"
 
   }
 }
