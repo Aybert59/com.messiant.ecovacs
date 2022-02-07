@@ -1,6 +1,6 @@
 {
   "id": "com.messiant.ecovacs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "compatibility": ">=5.0.0",
   "sdk": 3,
   "name": {
@@ -11,6 +11,13 @@
   "description": {
     "en": "Clean it !",
     "fr": "Aspirez !"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Sascha (mrbungle64)"
+      }
+    ]
   },
   "category": [
     "appliances"
