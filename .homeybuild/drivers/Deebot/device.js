@@ -24,8 +24,9 @@ class VacuumDevice extends Device {
       
     this.registerCapabilityListener("onoff", this.onCapabilityOnoff.bind(this));
     
-    
-      
+    const cleanZoneAction = this.homey.flow.getActionCard('clean_zone');
+    cleanZoneAction.registerRunListener(this.flowCleanZoneAction.bind(this));
+    cleanZoneAction.registerArgumentAutocompleteListener("zone", this.flowAutocompleteCleanZoneAction.bind(this));
   }
 
   /**
@@ -38,6 +39,8 @@ class VacuumDevice extends Device {
     let data = this.getData();
     let api = DeviceAPI;
 
+    let voidTable = [];
+    this.setStoreValue ('areas', voidTable);
 
     console.log('ApiVersion : ',api.getVersion()); 
     // for the moment vacbot is global : may not work with multiple devices
@@ -47,6 +50,8 @@ class VacuumDevice extends Device {
 		console.log("Vacuum is ready");
           this.setAvailable();
           this.syncStatus(vacbot);
+
+          vacbot.run("GetMaps", true, false);
 
           vacbot.on("BatteryInfo", (battery) => {
             console.log("Battery level: %d\%", Math.round(battery));
@@ -74,6 +79,43 @@ class VacuumDevice extends Device {
           vacbot.on("PushRobotNotify", (values) => {
             console.log("Notification '%s': %s", values.type, values.act);
           });
+
+          vacbot.on('Maps', (maps) => {     
+            for (const i in maps['maps']) {
+                if (maps['maps'][i]['mapIsCurrentMap'])
+                {
+                  // this.log('Maps: ', maps);
+                  const mapID = maps['maps'][i]['mapID'];
+                  vacbot.run('GetSpotAreas', mapID);
+                }
+            }
+          });
+
+          vacbot.on('MapSpotAreas', (spotAreas) => {
+            // this.log('MapSpotAreas: ', spotAreas);
+            for (const i in spotAreas['mapSpotAreas']) {
+                const spotAreaID = spotAreas['mapSpotAreas'][i]['mapSpotAreaID'];
+                vacbot.run('GetSpotAreaInfo', spotAreas['mapID'], spotAreaID);
+            }
+          });
+        
+          vacbot.on('MapSpotAreaInfo', (area) => {
+            // this.log('MapSpotAreaInfo: ', area.mapSpotAreaID, area.mapSpotAreaName);
+            // remplir un tableau de parametre propre au device
+            var tableAreas = this.getStoreValue ('areas');
+            if (! tableAreas.find (o => o.id == area.mapSpotAreaID))
+            {
+              tableAreas.push (
+                {
+                  name: area.mapSpotAreaName,
+                  id: area.mapSpotAreaID,
+                }
+              );
+              this.setStoreValue ('areas', tableAreas);
+            }
+          });
+       
+  
 	});
 
     vacbot.connect();
@@ -87,11 +129,10 @@ class VacuumDevice extends Device {
         this.log('syncing...');
         await this.syncStatus(vacbot)
               .catch(error => {
-				this.log('Sync error :', error);
-				return;
-			    });
+				        this.log('Sync error :', error);
+			        });
         
-          await delay(SYNC_INTERVAL);
+        await delay(SYNC_INTERVAL);
  
     }
     
@@ -151,8 +192,20 @@ class VacuumDevice extends Device {
     
     //////////////////////////////////////////// Flows ///////////////////////////////////////
     
+    async flowAutocompleteCleanZoneAction (query, args) {
+      var tableAreas = this.getStoreValue ('areas');
+      var filtered = tableAreas.filter ((element) => {
+        return element.name.toLowerCase().includes(query.toLowerCase()) 
+      });         
+      return filtered;
+    }
   
-    
+    async flowCleanZoneAction (args, state) {
+      
+          this.log ("cleaning zone : ", args.zone);
+                    // args.zone.name ; args.zone.id
+          vacbot.spotArea(args.zone.id);
+      }
     
     
     
@@ -167,6 +220,9 @@ class VacuumDevice extends Device {
         
         robot.run("GetBatteryState");
         robot.run("GetCleanState");
+
+        //var tableAreas = this.getStoreValue ('areas');
+        //this.log ('areas: ', tableAreas);
     }
 }
 

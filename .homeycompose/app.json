@@ -42,6 +42,10 @@
     "name": "Olivier Messiant",
     "email": "o.messiant@orange.fr"
   },
+  "bugs": {
+    "url": "https://github.com/Aybert59/com.messiant.ecovacs/issues"
+  },
+  "source": "https://github.com/Aybert59/com.messiant.ecovacs",
   "support": "mailto:o.messiant@orange.fr",
   "drivers": [
     {

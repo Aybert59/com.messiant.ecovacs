@@ -1,0 +1,26 @@
+{
+  "actions": [
+    {
+      "id": "clean_zone",
+      "title": {
+        "en": "Clean zone ...",
+        "fr": "Nettoie la pièce ..."
+      },
+      "titleFormatted": {
+        "en": "Clean zone [[zone]]",
+        "fr": "Nettoie la piece [[zone]]"
+      },
+      "platforms": [
+        "local"
+      ],
+      "args": [
+        {
+          "type": "autocomplete",
+          "name": "zone",
+          "title": { "en": "Zone", "fr": "Pièce" },
+          "placeholder": { "en": "kitchen", "fr": "Cuisine" }
+        }
+      ]
+    }
+  ]
+}

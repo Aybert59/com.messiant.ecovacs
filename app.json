@@ -43,7 +43,48 @@
     "name": "Olivier Messiant",
     "email": "o.messiant@orange.fr"
   },
+  "bugs": {
+    "url": "https://github.com/Aybert59/com.messiant.ecovacs/issues"
+  },
+  "source": "https://github.com/Aybert59/com.messiant.ecovacs",
   "support": "mailto:o.messiant@orange.fr",
+  "flow": {
+    "actions": [
+      {
+        "id": "clean_zone",
+        "title": {
+          "en": "Clean zone ...",
+          "fr": "Nettoie la pièce ..."
+        },
+        "titleFormatted": {
+          "en": "Clean zone [[zone]]",
+          "fr": "Nettoie la piece [[zone]]"
+        },
+        "platforms": [
+          "local"
+        ],
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=Deebot"
+          },
+          {
+            "type": "autocomplete",
+            "name": "zone",
+            "title": {
+              "en": "Zone",
+              "fr": "Pièce"
+            },
+            "placeholder": {
+              "en": "kitchen",
+              "fr": "Cuisine"
+            }
+          }
+        ]
+      }
+    ]
+  },
   "drivers": [
     {
       "name": {
