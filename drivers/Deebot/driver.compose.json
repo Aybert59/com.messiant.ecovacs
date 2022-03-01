@@ -6,7 +6,10 @@
   "class": "vacuumcleaner",
   "capabilities": [
     "onoff",
-    "measure_battery"
+    "measure_battery", 
+    "current_charge",
+    "current_clean",
+    "current_zone"
   ],
   "platforms": [ "local" ],
   "connectivity": [ "lan" ],
@@ -32,7 +35,12 @@
       "template": "add_devices"
     }
   ],
-
+  "repair": [
+    {
+      "id": "add_devices",
+      "template": "add_devices"
+    }
+  ],
   "energy": {
     "batteries": ["INTERNAL"]
       },

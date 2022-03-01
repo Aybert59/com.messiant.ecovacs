@@ -34,5 +34,11 @@
   },
   "1.2.5": {
     "en": "minor bug correction"
+  },
+  "1.0.4": {
+    "en": "start to work on map areas"
+  },
+  "1.0.5": {
+    "en": "intermediate, for testing only"
   }
 }

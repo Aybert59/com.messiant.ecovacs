@@ -1,0 +1,8 @@
+{
+  "type": "string",
+  "title": { "en": "Current Zone", "fr": "Zone actuelle" },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": true,
+  "icon" : "/assets/location-svgrepo-com.svg"
+}

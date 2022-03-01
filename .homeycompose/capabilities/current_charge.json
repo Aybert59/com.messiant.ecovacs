@@ -1,0 +1,8 @@
+{
+  "type": "string",
+  "title": { "en": "Charge status", "fr": "Etat de charge" },
+  "uiComponent": "sensor",
+  "getable": true,
+  "setable": true,
+  "icon" : "/assets/battery-charge-svgrepo-com.svg"
+}

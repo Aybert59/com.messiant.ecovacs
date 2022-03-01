@@ -1,4 +1,4 @@
-// based on https://github.com/joostth/sucks.js 
+// based on https://github.com/mrbungle64/ecovacs-deebot.js 
 
 // notes : peut avoir besoin de tenter la connection 2 ou 3 fois, du au random number. même des fois plus, insister
 // est en primcipe compatible devices multiples
@@ -55,8 +55,6 @@ class VacuumDriver extends Driver {
               this.log("Connected!");
               credentialsAreValid = true;
             }).catch((e) => {
-              // The Ecovacs API endpoint is not very stable, so
-              // connecting fails randomly from time to time
               this.log("Failure in connecting!");
             });
   
@@ -78,12 +76,14 @@ class VacuumDriver extends Driver {
             
             devices = devicesList.map((myDevice) => {
               //console.log ("myDevice: ",myDevice);
-              console.log(DeviceAPI.getVersion());
+              //console.log(DeviceAPI.getVersion());
               return {
                 name: myDevice.nick,
                 data: {
                   id: myDevice.did,
                   api: DeviceAPI,
+                  username: username,
+                  password: password,
                   geo: continent,
                   vacuum: myDevice
                 },
@@ -102,19 +102,46 @@ class VacuumDriver extends Driver {
       
 
         
-    onRepair(session, device) {
+    async onRepair(session, device) {
         // Argument session is a PairSocket, similar to Driver.onPair
         // Argument device is a Homey.Device that's being repaired
         this.log ('Repairing');
-        
-      
-        session.setHandler("my_event", (data) => {
-          // Your code
-        });
+        let data = device.getData();
+        this.log('device data : ', data);
 
-        session.setHandler("disconnect", () => {
+        let username = data.username;
+        let password = data.password;
+
+        await httpGetJson('http://ipinfo.io/json').then(async (json) => {
+            let country = json.country.toLowerCase();
+	          continent = ecovacsDeebot.countries[country.toUpperCase()].continent.toLowerCase();
+            
+            let device_id = EcoVacsAPI.md5(between(10000000,99999999));
+
+	          DeviceAPI = new EcoVacsAPI(device_id, country, continent);
+
+            let password_hash = EcoVacsAPI.md5(password);
+            	          
+            await DeviceAPI.connect(username, password_hash).then(() => {
+              this.log("Connected!");
+              credentialsAreValid = true;
+            }).catch((e) => {
+              this.log("Failure in connecting!: ", e);
+            });
+  
+          });
+
+        data.api=DeviceAPI;
+        this.log ('Data API : ', data.api);
+        device.onAdded();
+
+        //session.setHandler("my_event", (data) => {
+          // Your code
+        //});
+
+        //session.setHandler("disconnect", () => {
           // Cleanup
-        });
+        //});
       }
 }
 

@@ -22,5 +22,38 @@
         }
       ]
     }
+  ],
+  "triggers": [
+    {
+      "id": "charge_state_change",
+      "title": {
+        "en": "Charge State has changed",
+        "fr": "L'état de charge a changé"
+      },
+      "platforms": [
+        "local"
+      ]
+    },
+    {
+      "id": "clean_state_change",
+      "title": {
+        "en": "Clean State has changed",
+        "fr": "L'état de nettoyage a changé"
+      },
+      "platforms": [
+        "local"
+      ]
+    },
+    {
+      "id": "zone_change",
+      "title": {
+        "en": "Location has changed",
+        "fr": "Le lieu a changé"
+      },
+      "platforms": [
+        "local"
+      ]
+    }
   ]
+  
 }
