@@ -15,19 +15,30 @@ class VacuumDevice extends Device {
     
   /**
    * onInit is called when the device is initialized.
+   * this is the only method called upon Homey system boot
+   * 
+   * when adding a new device, onAdded is called after this one
    */
   async onInit() {
       
-    this.setUnavailable();
+    //this.setUnavailable();
     this.log('Vacuum has been initialized');
     this.log(this.getName());
-      
+       
     this.registerCapabilityListener("onoff", this.onCapabilityOnoff.bind(this));
     
     const cleanZoneAction = this.homey.flow.getActionCard('clean_zone');
     cleanZoneAction.registerRunListener(this.flowCleanZoneAction.bind(this));
     cleanZoneAction.registerArgumentAutocompleteListener("zone", this.flowAutocompleteCleanZoneAction.bind(this));
 
+    let api = DeviceAPI;
+    if (api == null)
+    {
+      this.log('system reboot, reconnecting');
+      this.driver.onRepair (null, this);
+    } else {
+      this.log('new device, do nothing else');
+    }
     
     //const changeChannelCondition = this.homey.flow.getConditionCard('current_channel');
     //  changeChannelCondition.registerRunListener(this.flowCurrentChannel.bind(this));

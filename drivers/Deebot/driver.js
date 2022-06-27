@@ -116,14 +116,12 @@ class VacuumDriver extends Driver {
 	          continent = ecovacsDeebot.countries[country.toUpperCase()].continent.toLowerCase();
             
             let device_id = EcoVacsAPI.md5(between(10000000,99999999));
-
 	          DeviceAPI = new EcoVacsAPI(device_id, country, continent);
 
             let password_hash = EcoVacsAPI.md5(password);
             	          
             await DeviceAPI.connect(username, password_hash).then(() => {
               this.log("Connected!");
-              credentialsAreValid = true;
             }).catch((e) => {
               this.log("Failure in connecting!: ", e);
             });
@@ -132,14 +130,6 @@ class VacuumDriver extends Driver {
 
         data.api=DeviceAPI;
         device.onAdded();
-
-        //session.setHandler("my_event", (data) => {
-          // Your code
-        //});
-
-        //session.setHandler("disconnect", () => {
-          // Cleanup
-        //});
       }
 }
 
